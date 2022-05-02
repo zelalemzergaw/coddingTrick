@@ -1,5 +1,6 @@
 package com.practice.onlinemarket.service;
 
+import com.practice.onlinemarket.exception.ApiRequestException;
 import com.practice.onlinemarket.model.Product;
 import com.practice.onlinemarket.ropository.ProductRepository;
 import com.practice.onlinemarket.serviceImpl.ProductServiceImpl;
@@ -56,11 +57,22 @@ public class ProductService implements ProductServiceImpl {
 
     @Override
     public Product updateProduct(Product product) {
-        Product productEntity =productRepository.findById(product.getId()).orElse(null);
+        Product productEntity = productRepository.findById(product.getId()).orElse(null);
         productEntity.setBrand(product.getBrand());
         productEntity.setMadeIn(product.getMadeIn());
         productEntity.setName(product.getName());
         productEntity.setPrice(product.getPrice());
         return productRepository.save(productEntity);
+    }
+
+    public int computeVal(int input) {
+        int result;
+        try{
+             result=input / 0;
+        } catch(ArithmeticException arithmeticException){
+//            throw new ArithmeticException("Zero could not devided by ay number");
+            throw new ApiRequestException("Zero could not devided by ay number");
+        }
+        return result;
     }
 }
