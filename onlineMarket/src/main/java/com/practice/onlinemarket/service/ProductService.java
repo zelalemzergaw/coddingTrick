@@ -18,9 +18,8 @@ public class ProductService implements ProductServiceImpl {
     public List<Product> findAll() {
         return productRepository.findAll();
     }
-
     @Override
-    public Product findById(Long id) {
+    public Product findById(long id) {
         return productRepository.findById(id).orElse(null);
     }
 
@@ -35,8 +34,8 @@ public class ProductService implements ProductServiceImpl {
     }
 
     @Override
-    public void save(Product product) {
-        productRepository.save(product);
+    public Product save(Product product) {
+        return productRepository.save(product);
     }
 
     @Override
@@ -45,13 +44,13 @@ public class ProductService implements ProductServiceImpl {
     }
 
     @Override
-    public Product getProduct(Long id) {
+    public Product getProduct(long id) {
         return productRepository.findById(id).get();
     }
 
     @Override
     public void deleteById(Long id) {
-        productRepository.deleteById(id);
+          productRepository.deleteById(id);
 
     }
 

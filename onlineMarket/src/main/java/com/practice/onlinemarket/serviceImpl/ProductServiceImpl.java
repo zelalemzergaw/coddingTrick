@@ -6,12 +6,12 @@ import java.util.List;
 
 public interface ProductServiceImpl {
     List<Product> findAll();
-    Product findById(Long id);
+    Product findById(long id);
     List<Product> findByName(String name);
     List<Product> findByPrice(float price);
-    void save(Product product);
+    Product save(Product product);
     List<Product> saveAllProducts(List<Product> products);
-    Product getProduct(Long id);
+    Product getProduct(long id);
     void deleteById(Long id);
     Product updateProduct(Product product);
 }

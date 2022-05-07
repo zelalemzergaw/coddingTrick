@@ -8,7 +8,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
@@ -26,8 +25,10 @@ public class Product {
     private String brand;
     @Column(name = "Made_In")
     private String madeIn;
-    @Column(name ="Price" )
+    @Column(name = "Price")
     private float price;
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
     private Date manufacturedDate;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Customer customer;
 }

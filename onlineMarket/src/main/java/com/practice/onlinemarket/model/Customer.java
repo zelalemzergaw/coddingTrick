@@ -23,7 +23,7 @@ public class Customer {
     @Column(name="Age")
     private int age;
     @Column(name="phoneNumber")
-    private long phoneNumber;
+    private String phoneNumber;
     @OneToOne(cascade=CascadeType.ALL)
     private Product product ;
 }

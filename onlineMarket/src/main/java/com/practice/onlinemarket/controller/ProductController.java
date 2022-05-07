@@ -15,7 +15,7 @@ public class ProductController {
 
     @GetMapping("")
     public String mapToInitialPage() {
-        return "<h>Welcome to first Page<h>";
+        return "Welcome to first Page";
     }
 
     @GetMapping("/rev/{number}")
@@ -29,8 +29,8 @@ public class ProductController {
     }
 
     @PostMapping("/product/save")
-    public void saveProduct(@RequestBody Product product) {
-        productService.save(product);
+    public Product saveProduct(@RequestBody Product product) {
+        return productService.save(product);
     }
 
     @PostMapping("/product/saveAll")
