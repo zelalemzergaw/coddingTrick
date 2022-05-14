@@ -20,6 +20,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -113,7 +114,41 @@ class ProductControllerTest {
     }
 
     @Test
-    void saveAllProduct() {
+    void saveAllProduct() throws Exception {
+        Product product=new Product();
+
+        product.setId(10);
+        product.setName("Iphone");
+        product.setPrice(1200);
+        product.setMadeIn("USA");
+        product.setBrand("Iphone");
+        product.setManufacturedDate(new SimpleDateFormat("dd/MM/yyyy").parse("11/14/2021"));
+        product.setCustomer(null);
+
+        Product product2=new Product();
+        product2.setId(20);
+        product2.setName("PhoneG");
+        product2.setPrice(1300);
+        product2.setMadeIn("Germany");
+        product2.setBrand("GG");
+        product2.setManufacturedDate(new SimpleDateFormat("dd/MM/yyyy").parse("1/13/2020"));
+        product2.setCustomer(null);
+
+        List<Product> productList = new ArrayList<Product>();
+        productList.add(product);
+        productList.add(product2);
+        String inputJSON= utility.mapToJson(productList);
+        String URI= "/product/saveAll";
+
+        Mockito.when(productService.saveAllProducts(Mockito.anyList())).thenReturn((productList));
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.post(URI)
+                .accept(MediaType.APPLICATION_JSON).content(inputJSON)
+                .contentType(MediaType.APPLICATION_JSON);
+        MvcResult mvcResult = mvc.perform(requestBuilder).andReturn();
+        MockHttpServletResponse response = mvcResult.getResponse();
+        String outputJSON= response.getContentAsString();
+        assertThat(outputJSON).isEqualTo(inputJSON);
+        assertEquals(HttpStatus.OK.value(),response.getStatus());
     }
 
     @Test
@@ -140,18 +175,119 @@ class ProductControllerTest {
     }
 
     @Test
-    void getProductByName() {
+    void getProductByName() throws Exception{
+        Product product=new Product();
+
+        product.setId(10);
+        product.setName("Iphone");
+        product.setPrice(1200);
+        product.setMadeIn("USA");
+        product.setBrand("Iphone");
+        product.setManufacturedDate(new SimpleDateFormat("dd/MM/yyyy").parse("11/14/2021"));
+        product.setCustomer(null);
+
+        Product product2=new Product();
+        product2.setId(20);
+        product2.setName("PhoneG");
+        product2.setPrice(1300);
+        product2.setMadeIn("Germany");
+        product2.setBrand("GG");
+        product2.setManufacturedDate(new SimpleDateFormat("dd/MM/yyyy").parse("1/13/2020"));
+        product2.setCustomer(null);
+
+        List<Product> productList = new ArrayList<Product>();
+        productList.add(product);
+        productList.add(product2);
+        String URI= "/product/findByName/Iphone";
+        Mockito.when(productService.findByName(Mockito.anyString())).thenReturn((productList));
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .get(URI)
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON);
+        MvcResult result =mvc.perform(requestBuilder).andReturn();
+        String inputJson = utility.mapToJson(productList);
+        String expectedJSON= result.getResponse().getContentAsString();
+        assertThat(expectedJSON).isEqualTo(inputJson);
     }
 
     @Test
-    void getProductByPrice() {
+    void getProductByPrice() throws Exception {
+        Product product=new Product();
+
+        product.setId(10);
+        product.setName("Iphone");
+        product.setPrice(1200);
+        product.setMadeIn("USA");
+        product.setBrand("Iphone");
+        product.setManufacturedDate(new SimpleDateFormat("dd/MM/yyyy").parse("11/14/2021"));
+        product.setCustomer(null);
+
+        Product product2=new Product();
+        product2.setId(20);
+        product2.setName("PhoneG");
+        product2.setPrice(1300);
+        product2.setMadeIn("Germany");
+        product2.setBrand("GG");
+        product2.setManufacturedDate(new SimpleDateFormat("dd/MM/yyyy").parse("1/13/2020"));
+        product2.setCustomer(null);
+
+        List<Product> productList = new ArrayList<Product>();
+        productList.add(product);
+        productList.add(product2);
+        String URI= "/product/findByPrice/1300";
+        Mockito.when(productService.findByPrice(Mockito.anyFloat())).thenReturn((productList));
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .get(URI)
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON);
+        MvcResult result =mvc.perform(requestBuilder).andReturn();
+        String inputJson = utility.mapToJson(productList);
+        String expectedJSON= result.getResponse().getContentAsString();
+        assertThat(expectedJSON).isEqualTo(inputJson);
     }
 
     @Test
-    void deleteProduct() {
+    void deleteProduct() throws Exception {
+        Product product=new Product();
+
+        product.setId(10);
+        product.setName("Iphone");
+        product.setPrice(1200);
+        product.setMadeIn("USA");
+        product.setBrand("Iphone");
+        product.setManufacturedDate(new SimpleDateFormat("dd/MM/yyyy").parse("11/14/2021"));
+        product.setCustomer(null);
+        String input="The above Product is removed Sucessfully with id : 10";
+        String uri = "/product/delete/10";
+        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.delete(uri)).andReturn();
+        int status = mvcResult.getResponse().getStatus();
+        assertEquals(200, status);
+        String content = mvcResult.getResponse().getContentAsString();
+        assertEquals(content, input);
     }
 
     @Test
-    void updateProduct() {
+    void updateProduct() throws Exception {
+        Product product=new Product();
+
+        product.setId(10);
+        product.setName("Iphone");
+        product.setPrice(1200);
+        product.setMadeIn("USA");
+        product.setBrand("Iphone");
+        product.setManufacturedDate(new SimpleDateFormat("dd/MM/yyyy").parse("11/14/2021"));
+        product.setCustomer(null);
+
+        String inputJSON= utility.mapToJson(product);
+        String URI= "/product/update";
+        Mockito.when(productService.updateProduct(Mockito.any(Product.class))).thenReturn(product);
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.put(URI)
+                .accept(MediaType.APPLICATION_JSON).content(inputJSON)
+                .contentType(MediaType.APPLICATION_JSON);
+        MvcResult mvcResult = mvc.perform(requestBuilder).andReturn();
+        MockHttpServletResponse response = mvcResult.getResponse();
+        String outputJSON= response.getContentAsString();
+        assertThat(outputJSON).isEqualTo(inputJSON);
+        assertEquals(HttpStatus.OK.value(),response.getStatus());
     }
 }

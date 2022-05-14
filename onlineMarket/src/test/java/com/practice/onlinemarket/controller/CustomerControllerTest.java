@@ -8,10 +8,8 @@ class CustomerControllerTest {
 
     @Test
     void getAllCustomer() {
-        CustomerController customerController= new CustomerController();
-//        String response = customerController.getAllCustomer("hello");
+        CustomerController customerController = new CustomerController();
     }
-
     @Test
     void saveOneCustomer() {
 

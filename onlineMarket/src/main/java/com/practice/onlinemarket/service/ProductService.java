@@ -27,7 +27,6 @@ public class ProductService implements ProductServiceImpl {
     public List<Product> findByName(String name) {
         return productRepository.findByName(name);
     }
-
     @Override
     public List<Product> findByPrice(float price) {
         return productRepository.findByPrice(price);

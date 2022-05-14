@@ -34,8 +34,8 @@ public class ProductController {
     }
 
     @PostMapping("/product/saveAll")
-    public void saveAllProduct(@RequestBody List<Product> products) {
-        productService.saveAllProducts(products);
+    public List<Product> saveAllProduct(@RequestBody List<Product> products) {
+        return productService.saveAllProducts(products);
     }
 
     @GetMapping("/product/findById/{id}")
@@ -45,13 +45,13 @@ public class ProductController {
 
     @GetMapping("/product/findByName/{name}")
     public List<Product> getProductByName(@PathVariable String name) {
-        ;
+
         return productService.findByName(name);
     }
 
     @GetMapping("/product/findByPrice/{price}")
     public List<Product> getProductByPrice(@PathVariable float price) {
-        ;
+
         return productService.findByPrice(price);
     }
 

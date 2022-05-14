@@ -1,2 +1,0 @@
-# coddingTrick
-Practical Repository 
