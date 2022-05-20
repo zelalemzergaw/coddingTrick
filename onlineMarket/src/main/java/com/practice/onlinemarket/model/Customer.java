@@ -5,12 +5,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Customer {
+public class Customer implements Serializable {
     @Id
     @GeneratedValue(strategy =GenerationType.IDENTITY)
     private long customerId;
@@ -26,4 +27,5 @@ public class Customer {
     private String phoneNumber;
     @OneToOne(cascade=CascadeType.ALL)
     private Product product ;
+    static final long serialVersionUID = 42L;
 }
