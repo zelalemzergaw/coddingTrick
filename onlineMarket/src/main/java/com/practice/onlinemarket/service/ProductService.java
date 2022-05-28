@@ -55,11 +55,12 @@ public class ProductService implements ProductServiceImpl {
     @Override
     public Product updateProduct(Product product) {
         Product productEntity = productRepository.findById(product.getId()).orElse(null);
-        productEntity.setBrand(product.getBrand());
-        productEntity.setMadeIn(product.getMadeIn());
-        productEntity.setName(product.getName());
-        productEntity.setPrice(product.getPrice());
-        return productRepository.save(productEntity);
+        return productEntity.toBuilder()
+                .brand(product.getBrand())
+                .madeIn(product.getMadeIn())
+                .name(product.getName())
+                .price(product.getPrice())
+                .build();
     }
 
     public int computeVal(int input) {
@@ -67,8 +68,7 @@ public class ProductService implements ProductServiceImpl {
         try{
              result=input / 0;
         } catch(ArithmeticException arithmeticException){
-//            throw new ArithmeticException("Zero could not devided by ay number");
-            throw new ApiRequestException("Zero could not devided by ay number");
+            throw new ApiRequestException("Zero could not divided by ay number");
         }
         return result;
     }

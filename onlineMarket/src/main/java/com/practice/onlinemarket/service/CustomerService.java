@@ -45,16 +45,15 @@ public class CustomerService implements CustomerServiceImpl {
 
     @Override
     public CustomerDTO findCustomer(Customer customer) {
-        CustomerDTO customerDTO = new CustomerDTO();
-        customerDTO.setId(customer.getCustomerId());
-        customerDTO.setAge(customer.getAge());
-        customerDTO.setFirstName(customer.getFirstName());
-        customerDTO.setLastName(customer.getLastName());
-        customerDTO.setBrand(customer.getProduct().getBrand());
-        customerDTO.setMadeIn(customer.getProduct().getMadeIn());
-        customerDTO.setName(customer.getProduct().getName());
-        customerDTO.setManufacturedDate(customer.getProduct().getManufacturedDate());
-        customerDTO.setPrice(customer.getProduct().getPrice());
-        return customerDTO;
+        return CustomerDTO.builder()
+                .id(customer.getCustomerId())
+                .age(customer.getAge())
+                .firstName(customer.getFirstName())
+                .lastName(customer.getLastName())
+                .brand(customer.getProduct().getBrand())
+                .madeIn(customer.getProduct().getMadeIn())
+                .name(customer.getProduct().getName())
+                .manufacturedDate(customer.getProduct().getManufacturedDate())
+                .price(customer.getProduct().getPrice()).build();
     }
 }
