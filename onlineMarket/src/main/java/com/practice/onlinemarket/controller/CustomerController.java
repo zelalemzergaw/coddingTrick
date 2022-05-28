@@ -2,7 +2,6 @@ package com.practice.onlinemarket.controller;
 
 import com.practice.onlinemarket.DTO.CustomerDTO;
 import com.practice.onlinemarket.model.Customer;
-import com.practice.onlinemarket.model.Product;
 import com.practice.onlinemarket.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -52,7 +52,6 @@ public class ProductService implements ProductServiceImpl {
           productRepository.deleteById(id);
 
     }
-
     @Override
     public Product updateProduct(Product product) {
         Product productEntity = productRepository.findById(product.getId()).orElse(null);
