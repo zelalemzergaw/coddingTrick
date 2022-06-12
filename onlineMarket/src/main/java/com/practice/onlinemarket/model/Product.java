@@ -26,7 +26,14 @@ public class Product implements Serializable {
     @Column(name = "Price")
     private float price;
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
+    @Column(name = "Date_Of_Manufacture")
     private Date manufacturedDate;
+    @Column(name="Active")
+    private boolean active;
+    @Column(name="Amount_In_Stock")
+    private int unitsInStock;
+    @Column(name="Image_Url")
+    private String imageUrl;
     @OneToOne(cascade = CascadeType.ALL)
     private Customer customer;
     static final long serialVersionUID = 42L;
