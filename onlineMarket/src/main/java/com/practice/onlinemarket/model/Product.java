@@ -29,9 +29,9 @@ public class Product implements Serializable {
     @Column(name = "Date_Of_Manufacture")
     private Date manufacturedDate;
     @Column(name="Active")
-    private boolean active;
+    private Boolean active;
     @Column(name="Amount_In_Stock")
-    private int unitsInStock;
+    private Integer unitsInStock;
     @Column(name="Image_Url")
     private String imageUrl;
     @OneToOne(cascade = CascadeType.ALL)

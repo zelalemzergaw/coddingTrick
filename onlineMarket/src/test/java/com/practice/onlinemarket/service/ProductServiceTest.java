@@ -3,7 +3,7 @@ package com.practice.onlinemarket.service;
 import com.practice.onlinemarket.controller.ProductController;
 import com.practice.onlinemarket.model.Product;
 import com.practice.onlinemarket.ropository.ProductRepository;
-import com.practice.onlinemarket.util.Utility;
+import com.practice.onlinemarket.util.MyUtility;
 import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -30,7 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 @SpringBootTest
 class ProductServiceTest {
     ProductController productController = new ProductController();
-    Utility utility = new Utility();
+    MyUtility utility = new MyUtility();
 
     @Autowired
     private ProductService productService;
