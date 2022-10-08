@@ -3,7 +3,7 @@ package com.practice.onlinemarket.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.practice.onlinemarket.model.Product;
 import com.practice.onlinemarket.service.ProductService;
-import com.practice.onlinemarket.util.Utility;
+import com.practice.onlinemarket.util.MyUtility;
 import jdk.jshell.execution.Util;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -36,7 +36,7 @@ import static org.springframework.web.servlet.function.RequestPredicates.content
 @WebMvcTest(ProductController.class)
 class ProductControllerTest {
     ProductController productController = new ProductController();
-    Utility utility = new Utility();
+    MyUtility utility = new MyUtility();
     @Autowired
     private MockMvc mvc;
     @MockBean
@@ -263,16 +263,7 @@ class ProductControllerTest {
         int status = mvcResult.getResponse().getStatus();
         assertEquals(200, status);
         String content = mvcResult.getResponse().getContentAsString();
-//        assertEquals(content, input);
-    }
-
-
-    @Test
-    void addNumber() throws Exception {
-        int x =10;
-        int y=5;
-        int sum = x+y;
-        assertEquals(15, sum);
+        //assertEquals(content, input);
     }
 
     @Test

@@ -11,7 +11,7 @@ import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
 @Component
 @Slf4j
-public class Utility {
+public class MyUtility {
 
     /**
      * Helper method which used to change object to Json
